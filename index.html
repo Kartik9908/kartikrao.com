@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kartik's Blog</title>
+  <!-- Google Fonts: Inter (Sans), Newsreader (Serif), JetBrains Mono (Tags) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap" rel="stylesheet">
+  
+  <style>
+    :root[data-theme="light"] {
+      --bg: #ffffff;
+      --text-primary: #171717;
+      --text-secondary: #525252;
+      --text-muted: #a3a3a3;
+      --border: #eaeaea;
+      --link-underline: #d4d4d4;
+      --link-hover: #171717;
+    }
+
+    :root[data-theme="dark"] {
+      --bg: #111111;
+      --text-primary: #ededed;
+      --text-secondary: #a1a1aa;
+      --text-muted: #52525b;
+      --border: #222222;
+      --link-underline: #404040;
+      --link-hover: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-secondary);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 14px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.25s ease, color 0.25s ease;
+      padding: 64px 24px 96px;
+    }
+
+    .container {
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    /* Header & Theme Toggle */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 34px;
+    }
+
+    .site-title {
+      color: var(--text-primary);
+      font-weight: 500;
+      font-size: 14.5px;
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+
+    .theme-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      padding: 6px;
+      color: var(--text-primary);
+    }
+
+    .dot-hollow {
+      width: 6.5px;
+      height: 6.5px;
+      border-radius: 50%;
+      border: 1.5px solid var(--text-primary);
+      transition: transform 0.2s ease;
+    }
+
+    .dot-filled {
+      width: 5.5px;
+      height: 5.5px;
+      border-radius: 50%;
+      background-color: var(--text-primary);
+      transition: transform 0.2s ease;
+    }
+
+    .theme-toggle:hover .dot-hollow {
+      transform: scale(1.15);
+    }
+
+    /* Bio Section */
+    .bio p {
+      margin-bottom: 20px;
+      color: var(--text-secondary);
+    }
+
+    .bio a {
+      color: var(--text-primary);
+      text-decoration: underline;
+      text-decoration-color: var(--link-underline);
+      text-underline-offset: 3.5px;
+      transition: text-decoration-color 0.2s ease;
+    }
+
+    .bio a:hover {
+      text-decoration-color: var(--link-hover);
+    }
+
+    /* Serif Accents matching "(great)" and "Welcome." */
+    .serif-italic {
+      font-family: 'Newsreader', Georgia, serif;
+      font-style: italic;
+      font-size: 15.5px;
+      color: var(--text-primary);
+    }
+
+    .welcome-text {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 16px;
+      color: var(--text-primary);
+      margin-top: 26px;
+      margin-bottom: 42px;
+    }
+
+    /* Blog Post List */
+    .post-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .post-item {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .post-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .post-title {
+      color: var(--text-primary);
+      font-weight: 400;
+      font-size: 14px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: opacity 0.2s ease;
+    }
+
+    .post-row:hover .post-title {
+      opacity: 0.7;
+    }
+
+    .post-leader {
+      flex-grow: 1;
+      border-bottom: 1px solid var(--border);
+      min-width: 16px;
+      position: relative;
+      top: -4px;
+    }
+
+    .post-date {
+      color: var(--text-muted);
+      font-size: 12.5px;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .post-tags {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      color: var(--text-muted);
+      opacity: 0.65;
+    }
+  </style>
+</head>
+<body>
+
+  <main class="container">
+    <header>
+      <a href="/" class="site-title">Kartik's Blog</a>
+      <button class="theme-toggle" id="themeBtn" aria-label="Toggle theme">
+        <span class="dot-hollow"></span>
+        <span class="dot-filled"></span>
+      </button>
+    </header>
+
+    <section class="bio">
+      <p>Hey 👋, I'm Kartik, a frontend platform engineer at <a href="https://headout.com" target="_blank">Headout</a>.</p>
+
+      <p>When I'm not building tools for the internet, you'll probably find me watching football, listening to <span class="serif-italic">(great)</span> music, or drinking diet coke.</p>
+
+      <p>I am an avid <a href="https://www.fcbarcelona.com" target="_blank">FC Barcelona</a> fan - says a lot about me, been through a lot.</p>
+
+      <p>You may find me at <a href="https://x.com" target="_blank">x</a>, <a href="https://linkedin.com" target="_blank">linkedin</a> and <a href="https://github.com" target="_blank">github</a>.</p>
+
+      <p>I am also <a href="mailto:kartikghorpade87@gmail.com">available for remote part-time freelance work</a>.</p>
+
+      <p>Here you will find my thoughts about... things? I plan to cover tech in general but I might lose my way and dive deeper into other domains as well.</p>
+
+      <p class="welcome-text">Welcome.</p>
+    </section>
+
+    <ul class="post-list">
+      <li class="post-item">
+        <a href="#" class="post-row">
+          <span class="post-title">Judge: What If TypeScript Could Make Fuzzy Decisions?</span>
+          <span class="post-leader"></span>
+          <span class="post-date">20 Sep 2025</span>
+        </a>
+        <span class="post-tags">#typescript #ai #open-source</span>
+      </li>
+
+      <li class="post-item">
+        <a href="#" class="post-row">
+          <span class="post-title">The Lost Pages — Looking for Early Testers</span>
+          <span class="post-leader"></span>
+          <span class="post-date">21 May 2025</span>
+        </a>
+        <span class="post-tags">#product #indie-hacking</span>
+      </li>
+
+      <li class="post-item">
+        <a href="#" class="post-row">
+          <span class="post-title">My AI Dev
